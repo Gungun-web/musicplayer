@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Music Player</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.min.css">
+    <style>
+        #volume, #seek {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 100%;
+            height: 6px;
+            background: #94a3b8;
+            outline: none;
+            border-radius: 5px;
+            transition: background 0.2s;
+        }
+
+        #volume:hover, #seek:hover {
+            background: #6366f1;
+        }
+
+        #volume::-webkit-slider-thumb, #seek::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 14px;
+            height: 14px;
+            background: #6366f1;
+            border-radius: 50%;
+            cursor: pointer;
+        }
+
+        #volume::-moz-range-thumb, #seek::-moz-range-thumb {
+            width: 14px;
+            height: 14px;
+            background: #6366f1;
+            border-radius: 50%;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body class="bg-gray-900 text-gray-100">
+    <div class="flex justify-center items-center h-screen">
+        <div class="bg-gray-800 p-6 rounded-3xl w-[90%] md:w-[400px] shadow-lg">
+            <!-- Top Controls -->
+            <div class="flex justify-between items-center">
+                <button class="text-2xl text-gray-300 hover:text-white">
+                    <i class="ri-arrow-left-line"></i>
+                </button>
+                <h2 class="text-lg font-semibold">Now Playing</h2>
+                <button class="text-2xl text-gray-300 hover:text-white">
+                    <i class="ri-menu-3-line"></i>
+                </button>
+            </div>
+
+            <!-- Album Art -->
+            <div class="flex flex-col items-center mt-6">
+                <div class="w-40 h-40 bg-cover bg-center rounded-full shadow-lg" id="album-art" style="background-image: url('https://via.placeholder.com/150');"></div>
+                <div class="text-center mt-4">
+                    <h3 id="track-title" class="text-2xl font-semibold">No Song</h3>
+                    <p id="track-artist" class="text-gray-400 text-lg">Unknown Artist</p>
+                </div>
+            </div>
+
+            <!-- Seek Bar -->
+            <div class="flex items-center mt-6">
+                <span id="current-time" class="text-sm">0:00</span>
+                <input type="range" id="seek" class="mx-4 flex-1" min="0" max="100" value="0">
+                <span id="duration" class="text-sm">0:00</span>
+            </div>
+
+            <!-- Playback Controls -->
+            <div class="flex justify-center items-center mt-6 space-x-4">
+                <button class="text-2xl text-gray-300 hover:text-white">
+                    <i class="ri-skip-back-line"></i>
+                </button>
+                <button class="text-3xl bg-indigo-500 text-white p-4 rounded-full shadow-lg hover:bg-indigo-600 play">
+                    <i class="ri-play-fill"></i>
+                </button>
+                <button class="text-2xl text-gray-300 hover:text-white">
+                    <i class="ri-skip-forward-line"></i>
+                </button>
+            </div>
+
+            <!-- Volume Control -->
+            <div class="flex items-center gap-4 mt-6">
+                <button id="volume-down" class="text-gray-300 hover:text-white">
+                    <i class="ri-volume-down-line"></i>
+                </button>
+                <input type="range" id="volume" class="flex-1" min="0" max="1" step="0.01">
+                <button id="volume-up" class="text-gray-300 hover:text-white">
+                    <i class="ri-volume-up-line"></i>
+                </button>
+            </div>
+
+            <!-- Music List -->
+            <div class="mt-8">
+                <h4 class="text-lg font-semibold mb-3">Your Music List</h4>
+                <ul id="music-list" class="space-y-2">
+                    <!-- Music items will be dynamically added here -->
+                </ul>
+                <input type="file" id="add-music" class="mt-4 w-full bg-red-500 text-sm bg-gray-700 border-0 p-2 rounded-lg" accept="audio/*">
+            </div>
+        </div>
+    </div>
+
+    <!-- Audio Element -->
+    <audio></audio>
+
+    <script src="script.js"></script>
+</body>
+</html>
+<!--git init
+git add README.md
+git commit -m "first commit"
+git branch -M main
+git remote add origin https://github.com/Gungun-web/musicplayer.git
+git push -u origin main-->
